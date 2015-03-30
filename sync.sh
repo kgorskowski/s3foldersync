@@ -10,7 +10,7 @@ fi
 logg "  started at `date +%Y%m%d_%H:%M:%S`"
 
 do_sync () {
-        aws s3 sync --delete s3://$S3_SOURCE s3://$S3_DESTINATION --source-region $SRC_REGION --region $DEST_REGION
+        aws s3 sync s3://$S3_SOURCE s3://$S3_DESTINATION --source-region $SRC_REGION --region $DEST_REGION
 }
 if [ -z "$INTERVAL" ]; then
   # Run once
