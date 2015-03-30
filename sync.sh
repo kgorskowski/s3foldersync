@@ -1,6 +1,5 @@
 #!/bin/sh -e
-TIMESTAMP=$(date +%Y:%m:%d:%H:%S)
-LOGFILE=var/log/s3sync_$TIMESTAMP.log
+LOGFILE=var/log/s3sync.log
 logg () {
         echo "`basename $0`$1" >> $LOGFILE
 }
@@ -8,7 +7,7 @@ if [ -z "$AWS_ACCESS_KEY_ID" ] || [ -z "$AWS_SECRET_ACCESS_KEY" ] || [ -z "$S3_S
   echo "Please set AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, S3_SOURCE Bucket and SRC_REGION and S3_DESTINATION Bucket and DEST_REGION in env vars" 1>&2
   exit 1
 fi
-logg " started"
+logg "  started at `date +%Y:%m:%d:%H:%S`"
 
 do_sync () {
         aws s3 sync --delete s3://$S3_SOURCE s3://$S3_DESTINATION --delete --source-region $SRC_REGION --region $DEST_REGION
@@ -26,4 +25,4 @@ else
     sleep $(( $INTERVAL - (`date +'%s'` - $s) ))
   done
 fi
-logg " ended"
+logg " ended at `date +%Y:%m:%d:%H:%S`"
