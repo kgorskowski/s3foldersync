@@ -1,6 +1,6 @@
 #!/bin/sh -e
 TIMESTAMP=$(date +%Y:%m:%d:%H:%S)
-LOGFILE='var/log/s3sync_$TIMESTAMP.log'
+LOGFILE=var/log/s3sync_$TIMESTAMP.log
 logg () {
         echo "`basename $0`$1" >> $LOGFILE
 }
