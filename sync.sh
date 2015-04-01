@@ -16,6 +16,7 @@ do_sync () {
 if [ "$DO_DELETE" = true ]; then
   # Run once
   do_sync --delete
+  logg " backup with --delete option ended at `date +%Y%m%d_%H:%M:%S`"
 else
   do_sync
 logg " backup ended at `date +%Y%m%d_%H:%M:%S`"
